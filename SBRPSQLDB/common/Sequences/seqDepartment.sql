@@ -1,1 +1,0 @@
-﻿CREATE SEQUENCE [common].[seqDepartment] AS smallint START WITH 2001 INCREMENT BY 1 NO CYCLE;

@@ -1,1 +1,0 @@
-﻿CREATE SEQUENCE [common].[seqSystemIsolationGroup] AS tinyint START WITH 11 INCREMENT BY 1 NO CYCLE;

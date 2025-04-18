@@ -1,1 +1,0 @@
-﻿CREATE SEQUENCE [common].[seqUser] AS smallint START WITH 3001 INCREMENT BY 1 NO CYCLE;

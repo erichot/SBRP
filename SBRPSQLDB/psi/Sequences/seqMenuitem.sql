@@ -1,1 +1,0 @@
-﻿CREATE SEQUENCE [psi].[seqMenuitem] AS smallint START WITH 301 INCREMENT BY 1 NO CYCLE;

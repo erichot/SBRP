@@ -1,1 +1,0 @@
-﻿CREATE SEQUENCE [common].[seqDivisionNo] AS smallint START WITH 1601 INCREMENT BY 1 NO CYCLE;
