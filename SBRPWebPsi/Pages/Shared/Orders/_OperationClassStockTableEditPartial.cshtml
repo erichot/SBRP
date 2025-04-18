@@ -1,0 +1,112 @@
+﻿@model List<OperationClassStockViewModel>
+
+
+
+
+
+@functions {
+    public string OnClick_Readonly(OperationClassEnum _operationClassNo, FormEditModeEnum _formEditMode)
+    {
+        if (_formEditMode == FormEditModeEnum.Read 
+            || _operationClassNo == OperationClassEnum.StockTransfer)
+            return "return false;";
+        else
+            return "return true;";
+    }
+
+    public string LabelClass_Readonly(OperationClassEnum _operationClassNo, FormEditModeEnum _formEditMode)
+    {
+        if (_formEditMode == FormEditModeEnum.Read 
+            || _operationClassNo == OperationClassEnum.StockTransfer)
+            return "readonly-checkbox";
+        else
+            return string.Empty;
+    }
+    public string InputClass_Readonly(OperationClassEnum _operationClassNo, FormEditModeEnum _formEditMode)
+    {
+        if (_formEditMode == FormEditModeEnum.Read 
+            || _operationClassNo == OperationClassEnum.StockTransfer)
+            return "form-check-input readonly-checkbox";
+        else
+            return "form-check-input";
+    }
+}
+
+
+<div class="inner bg-blue-lighter mb-4">
+    <h4>
+        單據作業
+    </h4>
+    <div class="table-responsive">
+        <table id="tbList" class="table table-bordered table-hover  text-center">
+            <thead>
+                <tr class="table-light">
+                    <th>
+                        @OperationClassStock.GetDisplayName(c => c.AllowFromThisStock)
+                    </th>
+                    <th>
+                        @OperationClassStock.GetDisplayName(c => c.OperationClassNo)
+                    </th>
+                    <th>
+                        @OperationClassStock.GetDisplayName(c => c.AllowToThisStock)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var i = default(int);
+                    foreach (var item in Model ?? Enumerable.Empty<OperationClassStockViewModel>())
+                    {
+                        <tr>
+                            <td>
+                                @*<input type="hidden" asp-for="@Model[i].DisallowFromStock_NewDefault" />*@
+                                @if (@Model[i].DisallowFromStock_NewDefault == false)
+                                {
+                                    <label asp-for="@Model[i].AllowFromThisStock" class="@LabelClass_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)">
+                                        <input type="checkbox" asp-for="@Model[i].AllowFromThisStock"
+                                               onclick="@OnClick_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)"
+                                               class="@InputClass_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)" />
+                                        @Model[i].IsFromThisStock_GetDisplayName()
+
+                                    </label>
+
+                                }
+                            </td>
+                            <td>
+                                <input type="hidden" asp-for="@Model[i].OperationClassNo" />
+                                <label>
+                                    @Model[i].OperationClassNo.GetDisplayName()
+
+                                </label>
+
+                                <input type="hidden" asp-for="@Model[i].StockNo" />
+                            </td>
+
+
+
+
+                            <td>
+                                @*<input type="hidden" asp-for="@Model[i].DisallowToStock_NewDefault" />*@
+                                @if (@Model[i].DisallowToStock_NewDefault == false)
+                                {
+                                    <label asp-for="@Model[i].AllowToThisStock" class="@LabelClass_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)">
+                                        @Model[i].IsToThisStock_GetDisplayName()
+                                        <input type="checkbox" asp-for="@Model[i].AllowToThisStock"
+                                               onclick="@OnClick_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)"
+                                               class="@InputClass_Readonly(Model[i].OperationClassNo, Model[i].FormEditMode)" />
+                                    </label>
+
+                                }
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+    <div>
+        
+    </div>

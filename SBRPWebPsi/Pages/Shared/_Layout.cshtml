@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/SBRPWebPsi.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/datatables.setting.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.extension.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/assets/oz/css/admin.css" rel="stylesheet" />
+
+    <title>xxx - @ViewData[AppSystem.VD_PageFullTitle]</title>
+</head>
+<body>
+    <div class="pgloadarea"><div class="pgloadingprog"></div></div>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper">
+
+        <!-- Page Header Start-->
+        <div class="page-main-header">
+            <div class="main-header-right row">
+                <div class="main-header-left d-lg-none">
+                    <div class="logo-wrapper">
+                        <a class="link-danger" asp-page="/index">
+                            <img class="blur-up lazyloaded" src="~/assets/oz/images/logo.svg">
+                        </a>
+                        <p>SBRP進銷存系統</p>
+                    </div>
+                </div>
+                <div class="mobile-sidebar">
+                    <div class="media-body text-right switch-sm">
+                        <label class="switch">
+                            <a href="#" data-toggle="title" title="收闔／展開 左側「功能表列」">
+                                <i id="sidebar-toggle" data-feather="align-left"></i>
+                            </a>
+                        </label>
+                    </div>
+                </div>
+
+                @await Component.InvokeAsync("NavHeader")
+
+
+            </div>
+        </div>
+        <!-- Page Header Ends -->
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar">
+                <div class="main-header-left d-none d-lg-block">
+                    <div class="logo-wrapper">
+                        <a href="#">
+                            <img class="blur-up lazyloaded" src="~/XXassets/oz/images/logo.svg">
+                        </a>
+                        <p>POS庫存系統</p>
+                    </div>
+                </div>
+                <div class="sidebar custom-scrollbar">
+                    <ul class="sidebar-menu">
+                        @await Component.InvokeAsync("NavMenu")
+                    </ul>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+            <!-- Right sidebar Start-->
+            <div class="right-sidebar" id="right_side_bar">
+                <div>
+                    <div class="container p-0">
+                        <div class="modal-header p-l-20 p-r-20">
+                            <div class="col-sm-8 p-0">
+                                <h6 class="modal-title font-weight-bold">FRIEND LIST</h6>
+                            </div>
+                            <div class="col-sm-4 text-right p-0"><i class="mr-2" data-feather="settings"></i></div>
+                        </div>
+                    </div>
+                    <div class="friend-list-search mt-0">
+                        <input type="text" placeholder="search friend"><i class="fa fa-search"></i>
+                    </div>
+                    <div class="p-l-30 p-r-30">
+                        <div class="chat-box">
+                            <div class="people-list friend-list">
+                                <ul class="list">
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/user.png" alt="">
+                                        <div class="status-circle online"></div>
+                                        <div class="about">
+                                            <div class="name">Vincent Porter</div>
+                                            <div class="status"> Online</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/user1.jpg" alt="">
+                                        <div class="status-circle away"></div>
+                                        <div class="about">
+                                            <div class="name">Ain Chavez</div>
+                                            <div class="status"> 28 minutes ago</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/user2.jpg" alt="">
+                                        <div class="status-circle online"></div>
+                                        <div class="about">
+                                            <div class="name">Kori Thomas</div>
+                                            <div class="status"> Online</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/user3.jpg" alt="">
+                                        <div class="status-circle online"></div>
+                                        <div class="about">
+                                            <div class="name">Erica Hughes</div>
+                                            <div class="status"> Online</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/man.png" alt="">
+                                        <div class="status-circle offline"></div>
+                                        <div class="about">
+                                            <div class="name">Ginger Johnston</div>
+                                            <div class="status"> 2 minutes ago</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/user5.jpg" alt="">
+                                        <div class="status-circle away"></div>
+                                        <div class="about">
+                                            <div class="name">Prasanth Anand</div>
+                                            <div class="status"> 2 hour ago</div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img class="rounded-circle user-image" src="~/assets/oz/images/dashboard/designer.jpg" alt="">
+                                        <div class="status-circle online"></div>
+                                        <div class="about">
+                                            <div class="name">Hileri Jecno</div>
+                                            <div class="status"> Online</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right sidebar Ends-->
+
+            <div class="page-body">
+                @*<div class="pgloadarea"><div class="pgloadingprog"></div></div>*@
+                <span id="spnNotification"></span>
+                <!-- Container-fluid starts-->
+                @RenderBody()
+                <!-- Container-fluid Ends-->
+
+            </div>
+
+            <!-- footer start-->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 footer-copyright">
+                            <p class="mb-0">copyright &copy; 2025 SBRP庫存系統. All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="pull-right mb-0">
+                                ver：
+                                <b>
+                                    1.4.0
+                                </b>
+                                &nbsp;
+                                <a href="#"></a>
+                                <small>
+                                    本頁載入：
+                                    <b>
+                                        @DateTime.Now.ToString("MM-dd  HH:ss")
+                                    </b>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- footer end-->
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<a href="~/lib/bootstrap/dist/css/bootstrap.min.css.map"></a>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <a href="~/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css.map">~/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css.map</a>
+
+
+    <link href="~/css/bootstrap.extension.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-6.6.0-web/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-6.6.0-web/css/brands.min.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-6.6.0-web/css/solid.min.css" rel="stylesheet" />
+    @*<link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />*@
+    @*<script src="~/lib/font-awesome/js/fontawesome.min.js"></script>*@
+
+
+
+
+
+
+    <!-- javascript & jquery -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- 2024/12/31 Tooltip conflict: A simple solution is to load bootrap.js after jquery-ui.js, so that the bootstrap .tooltip method takes precedence.-->
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <script src="~/assets/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <a href="~/assets/bootstrap-5.0.2-dist/js/bootstrap.min.js.map">~/assets/bootstrap-5.0.2-dist/js/bootstrap.min.js.map</a>
+
+
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+
+
+
+    <script src="~/lib/moment.js/moment.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap js-->
+    <!--<script src="~/assets/oz/js/popper.min.js"></script>
+    <script src="~/assets/oz/js/bootstrap.js"></script>-->
+    <!-- feather icon js-->
+    <!--<script src="~/assets/oz/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/assets/oz/js/icons/feather-icon/feather-icon.js"></script>-->
+    <!-- Sidebar jquery-->
+    <!--<script src="~/assets/oz/js/sidebar-menu.js"></script>-->
+    <!--Datepicker jquery-->
+    <!--<script src="~/assets/oz/js/datepicker/datepicker.js"></script>
+    <script src="~/assets/oz/js/datepicker/datepicker.en.js"></script>
+    <script src="~/assets/oz/js/datepicker/datepicker.custom.js"></script>-->
+    <!-- Jsgrid js-->
+    <!--<script src="~/assets/oz/js/jsgrid/jsgrid.min.js"></script>
+    <script src="~/assets/oz/js/jsgrid/griddata-page-list.js"></script>
+    <script src="~/assets/oz/js/jsgrid/jsgrid-page-list.js"></script>-->
+    @* Tooltip *@
+    <script src="~/lib/lazysizes/lazysizes.min.js"></script>
+    @*<link href="~/assets/oz/css/tooltipify.min.css" rel="stylesheet" />*@
+    @*<link rel="stylesheet" type="text/css" href="/assets/oz/css/admin.css">*@
+
+    <script src="~/assets/oz/js/lazysizes.min.js"></script>
+    <script src="~/assets/oz/js/jquery-tooltipify.min.js"></script>
+
+    <script src="~/assets/oz/js/admin-script.js"></script>
+
+
+
+
+
+    <link href="~/assets/datatables/datatables.min.css" rel="stylesheet" />
+    <script src="~/assets/datatables/datatables.min.js"></script>
+    <script src="~/assets/datatables/page.jumpToData().js"></script>
+
+    <!-- Kendo -->
+    <link href="~/assets/kendo/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/assets/kendo/styles/kendo.rtl.min.css" rel="stylesheet" />
+
+    <a href="~/assets/kendo/styles/kendo.default.min.css.map"></a>
+    <link href="~/assets/kendo/styles/kendo.default.min.css" rel="stylesheet" />
+
+    <a href="~/assets/kendo/styles/kendo.default.mobile.min.css.map"></a>
+    <link href="~/assets/kendo/styles/kendo.default.mobile.min.css" rel="stylesheet" />
+
+    <a href="~/assets/kendo/js/kendo.all.min.js.map"></a>
+    <script src="~/assets/kendo/js/kendo.all.min.js"></script>
+
+
+
+
+
+    <link href="~/assets/jquery.magnific/magnific-popup.css" rel="stylesheet" />
+    <script src="~/assets/jquery.magnific/jquery.magnific-popup.min.js"></script>
+
+
+    <script src="~/js/jquery.ui.setting.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.data.js"></script>
+    <script src="~/js/site.ui.js"></script>
+    <script src="~/js/site.lang.js"></script>
+    <script src="~/js/swal.js"></script>
+    <script src="~/js/datatables.setting.js"></script>
+    <script src="~/js/editor.setting.js"></script>
+
+    <script>
+        let kdLayNotification;
+        $(function () {
+            $(document).uitooltip();
+
+            kdLayNotification = $("#spnNotification").kendoNotification().data("kendoNotification");
+
+        });
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

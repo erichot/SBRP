@@ -1,0 +1,17 @@
+﻿
+@model MenuitemViewModel
+
+
+    
+<a class="sidebar-header" asp-page="@Model.AspPage">
+    <i data-feather="@Model.DataFeather"></i>
+    @*https://codepen.io/hiway/pen/ZazMEr
+    <i data-feather="video"></i>
+    <i data-feather="paperclip"></i>
+    <i data-feather="file-text"></i>*@
+    <span>
+        @Model.NodeName
+    </span>
+    <i class="fa fa-angle-right pull-right"></i>
+</a>
+    

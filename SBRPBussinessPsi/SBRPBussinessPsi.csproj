@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SBRPBusiness\SBRPBusiness.csproj" />
+    <ProjectReference Include="..\SBRPDataPSI\SBRPDataPsi.csproj" />
+    <ProjectReference Include="..\SBRPData\SBRPData.csproj" />
+    <ProjectReference Include="..\SBRPLogPsi\SBRPLogPsi.csproj" />
+  </ItemGroup>
+
+</Project>

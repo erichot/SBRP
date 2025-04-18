@@ -1,0 +1,52 @@
+﻿@model SupplierViewModel
+
+
+<input type="hidden" asp-for="@Model.SupplierNo" />
+<input type="hidden" asp-for="@Model.SupplierId" />
+<input type="hidden" asp-for="@Model.SupplierName" />
+<input type="hidden" asp-for="@Model.SupplierNameAbbr" />
+
+
+
+<div class="inner bg-blue-lighter mb-4">
+    <h4>
+        供應商資料
+    </h4>
+    <div class="flex-box">
+        <div class="items cols-4">
+            <div class="form-group">
+                <label asp-for="@Model.BillingPeriodType"></label>
+                <select asp-for="@Model.BillingPeriodType" 
+                        asp-items="Html.GetEnumSelectListWithDefaultValue<SBRPData.DateRangeTypeEnum>(SBRPData.DateRangeTypeEnum.Monthly)"  
+                        disabled="@Model.HtmlAttrDisabled" class="form-control">
+                    </select>
+            </div>
+        </div>
+        <div class="items cols-6">
+            <div class="form-group">
+                <label asp-for="@Model.BillingPeriodDay"></label>
+                <input type="number" asp-for="@Model.BillingPeriodDay"
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.BillingPeriodDay" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="items cols-6">
+            <div class="form-group">
+                <label asp-for="@Model.PaymentPeriodDay"></label>
+                <input type="number" asp-for="@Model.PaymentPeriodDay" 
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.PaymentPeriodDay" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+

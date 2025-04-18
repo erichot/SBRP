@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "moment.js@2.30.1",
+      "destination": "wwwroot/lib/moment.js/"
+    },
+    {
+      "library": "font-awesome@6.6.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "jqueryui@1.14.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "sweetalert2@11.14.5",
+      "destination": "wwwroot/lib/sweetalert2/"
+    },
+    {
+      "library": "lazysizes@5.3.2",
+      "destination": "wwwroot/lib/lazysizes/"
+    },
+    {
+      "library": "bootstrap-icons@1.11.3",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    }
+  ]
+}

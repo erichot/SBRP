@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace SBRPDataKates.Models;
+
+[Table("DS_BF_User_Add")]
+[Index("CardID", Name = "IX_DS_BF_User_Add_CardID")]
+[Index("InActive", Name = "IX_DS_BF_User_Add_InActive")]
+[Index("SlaveSID", Name = "IX_DS_BF_User_Add_SlaveSID")]
+public partial class DS_BF_User_Add
+{
+    [Key]
+    public int UserAddSID { get; set; }
+
+    public int UserSID { get; set; }
+
+    [StringLength(14)]
+    public string CardID { get; set; } = null!;
+
+    public int SlaveSID { get; set; }
+
+    public bool InActive { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime TimeAddNew { get; set; }
+
+    public int UserAddNewSID { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime? TimeModifyLast { get; set; }
+
+    public int? UserModifyLastSID { get; set; }
+
+    public bool IsReplicated { get; set; }
+
+    public int ReplicateReturnID { get; set; }
+
+    [Column(TypeName = "datetime")]
+    public DateTime? TimeReplicated { get; set; }
+}

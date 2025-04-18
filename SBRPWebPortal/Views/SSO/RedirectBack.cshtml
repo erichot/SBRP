@@ -1,0 +1,21 @@
+﻿@model SBRPBusiness.Models.SsoRedirectRequestModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<html>
+    <head>
+        Portal
+    </head>
+    <body>
+        <form id="form1" action="@Model.redirectUrl" method="post">
+            <input type="hidden" name="webToken" value="@Model.webToken" />
+            <input type="hidden" name="loginId" value="@Model.loginId" />
+        </form>
+        <script type="text/javascript">
+            document.getElementById("form1").submit();
+        </script>
+    </body>
+</html>

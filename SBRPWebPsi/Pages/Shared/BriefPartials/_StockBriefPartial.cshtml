@@ -1,0 +1,30 @@
+﻿@model StockViewModel
+
+
+
+<div class="@($"flex-box form-function bg-{Model.StockOperationAction.ToString()}StockBriefInfo")">
+    <div class="items cols-6">
+        <div class="form-group">
+            <label asp-for="StockId">
+                @Model.StockOperationAction.GetDisplayName()
+                @Stock.GetDisplayName(c => c.StockId)
+            </label>
+            <input type="text" asp-for="StockId"
+                   data-val="false" formnovalidate="formnovalidate"
+                   class="form-control-plaintext cancel ms-2" />
+        </div>
+    </div>
+    <div class="items cols-5">
+        <div class="form-group">
+            <label asp-for="StockName">
+                @Model.StockOperationAction.GetDisplayName()
+                @Stock.GetDisplayName(c => c.StockName)
+            </label>
+            <input type="text" asp-for="StockName"
+                   data-val="true" required
+                   class="form-control-plaintext cancel ms-2" />
+        </div>
+    </div>
+    
+
+</div>

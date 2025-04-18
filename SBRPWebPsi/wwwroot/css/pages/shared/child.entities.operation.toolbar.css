@@ -1,0 +1,27 @@
+.toolbar {
+    display: flex;
+    justify-content: center;
+}
+
+.toolbar-btn {
+    border: none;
+    background: none;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+
+
+.toolbar-btn-disabled {
+    border: none;
+    background: none;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.toolbar-btn:hover {
+    transform: scale(1.2);
+}

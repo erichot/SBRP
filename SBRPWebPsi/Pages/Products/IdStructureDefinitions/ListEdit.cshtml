@@ -1,0 +1,165 @@
+﻿@page
+@model SBRPWebPsi.Pages.Products.IdStructureDefinitions.ListEditModel
+@{
+}
+
+
+<div class="container-fluid">
+    <partial name="~/Pages/Shared/GeneralPages/_PageHeaderPartial.cshtml" model="Model.PG_PageHeaderInfo" />
+</div>
+
+
+
+<form id="form1" method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- start card -->
+                <div class="card page-card">
+
+                    <div class="card-header">
+                        <div class="form-function bg-red-lighter">
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">
+                                <label for="txtSupplierId">
+                                    @Store.GetDisplayName(c => c.StoreId)
+                                </label>
+                                <input type="text" id="txtStoreId" asp-for="@Model.PG_Filter.StoreId"
+                                       data-val="false" class="form-control" />
+                            </div>
+                            <div class="items">
+                                <label for="txtSupplierName">
+                                    @Store.GetDisplayName(c => c.StoreName)
+                                </label>
+                                <input type="text" id="txtStoreName" asp-for="@Model.PG_Filter.StoreName"
+                                       data-val="false" class="form-control" />
+                            </div>
+                        </div>
+
+
+
+                        <!--附帶或次要功能連結或按鈕-->
+                        <div class="form-function bg-yellow-lighter">
+                            <div class="items"></div>
+                            <div class="items">
+                                <a asp-page="EntityProcess" asp-page-handler="Add"
+                                   accesskey="A" title="（快速鍵：Alt + A）"
+                                   onclick="jsPageLoading_Show();" class="btn btn-secondary btn-adddetail">
+                                    @WebBaseUI.Form_Btn_AddDetailEntry
+                                </a>
+
+                            </div>
+                            <div class="items">
+                                <div class="from-group">
+                                    <button type="submit" asp-page="List" asp-page-handler="Refresh"
+                                            onclick="jsPageLoading_Show();"  
+                                            accesskey="R" title="（快速鍵：Alt + R）"
+                                            class="btn btn-secondary btn-refresh">
+                                        @WebBaseUI.Form_Btn_Refresh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table id="tbList" class="table table-bordered table-striped table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>
+                                            @ProductIdStructureDefinition.GetDisplayName(c => c.PGCOrderNo)
+                                        </th>
+                                        <th>
+                                            @ProductGeneralCategoryDefinition.GetDisplayName(c => c.PGCategoryNo)
+                                        </th>
+                                        <th>
+                                            @ProductGeneralCategoryDefinition.GetDisplayName(c => c.PGCategoryName)
+                                        </th>
+                                        <th>
+                                            @ProductGeneralCategoryDefinition.GetDisplayName(c => c.ItemIdMinLength)
+                                        </th>
+                                        <th>
+                                            @ProductGeneralCategoryDefinition.GetDisplayName(c => c.ItemIdMaxLength)
+                                        </th>
+                                        <th>
+                                            @WebBaseUI.Form_Btn_Edit
+                                        </th>
+                                        <th>
+                                            @WebBaseUI.Form_Btn_Remove
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+
+                                        foreach (var item in Model.PG_List ?? Enumerable.Empty<StoreViewModel>())
+                                        {
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td>
+                                                    <a asp-page="EntityProcess" asp-route-_no="@item.StoreNo"
+                                                       onclick="jsPageLoading_Show();" title="@item.StoreName">
+                                                        @item.StoreId
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    @item.StoreName
+                                                </td>
+                                               
+                                                <td>
+                                                    <a asp-page="EntityProcess" asp-page-handler="Edit" asp-route-_no="@item.StoreNo"
+                                                       onclick="jsPageLoading_Show();" title="@item.StoreId">
+                                                        <i class="bi-pencil-square"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a asp-page="EntityProcess" asp-page-handler="SubmitToRemove" asp-route-_no="@item.StoreNo"
+                                                       onclick="jsPageLoading_Show();" title="@item.StoreId">
+                                                        <i class="bi-trash"></i>
+                                                    </a>
+                                                </td>
+                                               
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+
+
+
+@section Scripts {
+    <script>
+        const jsApiToken = '@Model.PG_API_Token';
+        const jsApiUrlRoot = '@Model.PG_API_UrlRoot';
+        const jsIsAllowEditing = true;
+        var jsApiUrlED = jsApiUrlRoot + '@Model.PG_API_UrlRoot';
+        var jsApiUrlDT = jsApiUrlRoot + '@Model.PG_API_UrlRoot';
+
+    </script>
+    
+
+}

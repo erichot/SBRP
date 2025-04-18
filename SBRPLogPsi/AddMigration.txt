@@ -1,0 +1,7 @@
+﻿
+add-migration "Instock0326" -Context LogDbContext -Project SBRPLogPsi -StartupProject SBRPWebPsi 
+
+update-database -Context LogDbContext -Project SBRPLogPsi -StartupProject SBRPWebPsi
+
+
+remove-migration  -Context LogDbContext -Project SBRPLogPsi -StartupProject SBRPWebPsi 

@@ -1,0 +1,202 @@
+﻿@page 
+@model SBRPWebPsi.Pages.Products.PriceDefinitions.ListEntityProcessModel
+@{
+}
+
+
+
+<div class="container-fluid">
+    <partial name="~/Pages/Shared/GeneralPages/_PageHeaderPartial.cshtml" model="Model.PG_PageHeaderInfo" />
+</div>
+
+
+<form id="form1" method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <div class="card">
+                    <div class="card-header">
+                        @if (Model.PG_FormEditModeEnum != FormEditModeEnum.Read)
+                        {
+                            <div class="form-function bg-shell">
+                                <div class="items">
+                                    <ul class="">
+                                        <li>
+                                            <button type="submit" asp-page-handler="PopElement"
+                                                    title="減少"
+                                                    class="btn btn-shell">
+                                                -
+                                            </button>
+                                        </li>
+                                        <li>
+                                            
+                                        </li>
+                                        <li>
+                                            <button type="submit" asp-page-handler="PushElement" 
+                                                    title="增加"
+                                                    class="btn btn-shell">
+                                                +
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="form-box">
+
+                            <div asp-validation-summary="ModelOnly" class="validation-summary">
+                                <span></span>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-form">
+                                    <thead class="k-table-thead">
+                                        <tr>
+                                            <th>
+                                                @ProductPriceDefinition.GetDisplayName(c => c.PriceNo)
+                                            </th>
+                                            <th>
+                                                @ProductPriceDefinition.GetDisplayName(c => c.PriceDefinitionName)
+                                            </th>
+                                            <th>
+                                                @ProductPriceDefinition.GetDisplayName(c => c.ParentPriceNo)
+                                            </th>
+                                            <th>
+                                                @ProductPriceDefinition.GetDisplayName(c => c.PercentageToParent)
+                                            </th>
+                                            <th>
+                                                @ProductPriceDefinition.GetDisplayName(c => c.RoundUpDigitNumber)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            var index = default(int);
+                                            foreach (var item in Model.PG_List ?? Enumerable.Empty<ProductPriceDefinition>())
+                                            {
+                                                                                <tr>
+                                                                                    <td class="table-light">
+                                                                                        <div class="input">
+                                                                                            @item.PriceNo.ToString()
+                                                                                        </div>
+
+                                                                                        <input type="hidden" name="@($"PG_List[{index.ToString()}].PriceNo")" value="@item.PriceNo" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input type="text" name="@($"PG_List[{index.ToString()}].PriceDefinitionName")" value="@item.PriceDefinitionName"
+                                                                                               readonly="@Model.PG_FormEditModeIsReadonly"
+                                                                                               class="form-control" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input type="number" name="@($"PG_List[{index.ToString()}].ParentPriceNo")" value="@item.ParentPriceNo" 
+                                                                                               readonly="@Model.PG_FormEditModeIsReadonly"
+                                                                                               class="form-control"/>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input type="number" name="@($"PG_List[{index.ToString()}].PercentageToParent")" value="@item.PercentageToParent" 
+                                                                                               readonly="@Model.PG_FormEditModeIsReadonly"
+                                                                                               class="form-control"/>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <input type="number" name="@($"PG_List[{index.ToString()}].RoundUpDigitNumber")" value="@item.RoundUpDigitNumber" 
+                                                                                               readonly="@Model.PG_FormEditModeIsReadonly"
+                                                                                               class="form-control"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                index++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-function bg-red-lighter">
+                            <div class="items">
+                                <div class="form-group">
+                                    <button type="button" onclick="history.back(-1);" class="btn btn-dark">
+                                        <i class="fa fa-arrow-left"></i>
+                                        @WebBaseUI.Form_Btn_Back
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="items">
+                                <div class="from-group">
+
+                                </div>
+                            </div>
+
+                            <!-- Start User operation action -->
+                            @{
+
+                                if (Model.PG_FormEditModeEnum == FormEditModeEnum.Add)
+                                {
+                                    <div class="items">
+                                        <div class="form-group">
+                                            <button id="btnAdd" class="btn btn-primary btn-add"
+                                                    accesskey="A" title="（快速鍵：Alt + A）"
+                                                    onclick="fnSwalBtnConfirmInsert_OnClick('btnInsert');" type="button">
+                                                @WebBaseUI.Form_Btn_Insert
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button asp-page="ListEntityProcess" asp-page-handler="Insert"
+                                                    disabled id="btnInsert" type="submit" class="d-none">
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+
+                                if (Model.PG_FormEditModeEnum == FormEditModeEnum.Read)
+                                {
+                                    <div class="items">
+                                        <div class="form-group">
+                                            <a asp-page="ListEntityProcess" asp-page-handler="Edit">
+                                                <i class="fa fa-edit"></i>
+                                                編輯
+                                            </a>                                            
+                                        </div>
+                                    </div>
+                                }
+
+                                if (Model.PG_FormEditModeEnum == FormEditModeEnum.Edit)
+                                {
+                                    <div class="items">
+                                        <div class="form-group">
+                                            <button id="btnAdd" class="btn btn-primary btn-add"
+                                                    accesskey="A" title="（快速鍵：Alt + A）"
+                                                    onclick="fnSwalBtnConfirmInsert_OnClick('btnInsert');" type="button">
+                                                @WebBaseUI.Form_Btn_Insert
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button asp-page="ListEntityProcess" asp-page-handler="Insert"
+                                                    disabled id="btnInsert" type="submit" class="d-none">
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <!-- End User operation action -->
+
+                        </div>
+                    </div>
+                    <!-- End card-footer -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+
+@section Scripts {
+    
+}

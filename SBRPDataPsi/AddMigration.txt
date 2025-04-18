@@ -1,0 +1,9 @@
+﻿
+add-migration "Member_Person" -Context PsiDbContext -Project SBRPDataPsi -StartupProject SBRPWebPsi 
+
+update-database -Context PsiDbContext -Project SBRPDataPsi -StartupProject SBRPWebPsi
+
+
+Script-Migration -From 0 -context PsiDbContext -Project SBRPDataPsi -StartupProject SBRPWebPsi
+
+remove-migration  -Context PsiDbContext -Project SBRPDataPsi -StartupProject SBRPWebPsi 

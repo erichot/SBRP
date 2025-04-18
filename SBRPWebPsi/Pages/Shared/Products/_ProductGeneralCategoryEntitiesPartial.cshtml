@@ -1,0 +1,114 @@
+﻿@model ProductViewModel
+
+@functions {
+    public SelectList GetSelectList(byte _pGCategoryNo)
+    {
+        var list = (List<ProductGeneralCategoryItemViewModel>)ViewData[AppSystem.VD_ProductGeneralCategoryItem_List];
+        return list
+                .Where(c => c.PGCategoryNo == _pGCategoryNo)
+                .ToList()
+                .ToSelectList<ProductGeneralCategoryItemViewModel>();
+    }
+}
+
+<div class="container-fluid bg-light p-4 mb-4 rounded">
+    <h4 class="mb-4">Product General Categories</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                //不論新增或刪除，Model.ProductGeneralCategories應先把data loading備妥
+                // 留意i的順序 Model.ProductGeneralCategories[i]
+                var i = default(int);
+                foreach (var item in Model.ProductGeneralCategories
+                    .Where(c => c.ProductGeneralCategoryDefinition.IsProductIdStructure == true)
+                    .ToList()
+                    )
+                {
+                    <tr>
+                        <td>
+                            @($"({(i+1).ToString()})")
+                            @item.ProductGeneralCategoryDefinition.PGCategoryName
+                        </td>
+                        <td>
+                            <input type="hidden" asp-for="@Model.ProductGeneralCategories[i].ProductNo" />
+                            <input type="hidden" asp-for="@Model.ProductGeneralCategories[i].PGCategoryNo" />
+                            <select asp-for="@Model.ProductGeneralCategories[i].PGCItemNo"
+                                    asp-items="@GetSelectList(item.PGCategoryNo)"
+                                    disabled="@Model.HtmlAttrDisabled"
+                                    class="cssPtPGCItemNo fixed-width-font form-control"
+                                    id="selPtPGCItemNo_@i">
+                            </select>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+
+
+
+
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                //不論新增或刪除，Model.ProductGeneralCategories應先把data loading備妥
+                foreach (var item in Model.ProductGeneralCategories
+                        .Where(c => c.ProductGeneralCategoryDefinition.IsProductIdStructure == false)
+                        .ToList()
+                        )
+                {
+                    <tr>
+                        <td>
+                            @($"({(i+1).ToString()})")
+                            @item.ProductGeneralCategoryDefinition.PGCategoryName
+                        </td>
+                        <td>
+                            <input type="hidden" asp-for="@Model.ProductGeneralCategories[i].ProductNo" />
+                            <input type="hidden" asp-for="@Model.ProductGeneralCategories[i].PGCategoryNo" />
+                            <select asp-for="@Model.ProductGeneralCategories[i].PGCItemNo"
+                                    asp-items="@GetSelectList(item.PGCategoryNo)"
+                                    class="cssPtPGCItemNo fixed-width-font form-control"
+                                    disabled="@Model.HtmlAttrDisabled"
+                                    id="selPtPGCItemNo_@i">
+                                <option value=""></option>
+                            </select>
+
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+
+
+
+

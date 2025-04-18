@@ -1,0 +1,82 @@
+﻿@page
+@model SBRPWebPsi.Pages.Reports.ProductStocks.ProductStockPivotYuruReportModel
+@{
+}
+
+
+
+<div class="container-fluid">
+    <partial name="~/Pages/Shared/GeneralPages/_PageHeaderPartial.cshtml" model="Model.PG_PageHeaderInfo" />
+</div>
+
+
+
+<form id="form1" method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- start card -->
+                <div class="card page-card">
+
+                    <div class="card-header">
+
+
+                        <!--附帶或次要功能連結或按鈕-->
+                        <div class="form-function bg-list-control">
+                            <div class="items"></div>
+                            
+                            <div class="items">
+                                <div class="from-group">
+                                    <button type="submit" asp-page="ProductStockPivotYuruReport" asp-page-handler="Refresh"
+                                            onclick="jsPageLoading_Show();" accesskey="R"
+                                            class="btn btn-secondary btn-list-control btn-refresh"
+                                            data-toggle="tooltip" title="（快速鍵：Alt + R）">
+                                        @WebBaseUI.Form_Btn_Refresh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table id="tbPivot" class="table table-bordered table-striped table-hover">
+                                <thead class="table-light">
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot class="table-light">
+                                </tfoot>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+
+
+
+@section Scripts {
+    <script src="~/js/pages/reports/product.stock.pivot.yuru.js"></script>    
+    <script>
+        const jsIsPostBack = @Model.PG_IsPostBack.ConvertToJS();
+        var vPvTbData = [];
+        vPvTbData = @(Html.Raw(Model.PG_TableRawJsonData.ToString()?? "''"));
+
+        if (jsIsPostBack) renderObjectsToTable(vPvTbData, '#tbPivot');
+    </script>
+    
+
+}

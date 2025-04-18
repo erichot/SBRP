@@ -1,0 +1,1 @@
+﻿CREATE SEQUENCE [common].[seqCompany] AS smallint START WITH 5001 INCREMENT BY 1 NO CYCLE;

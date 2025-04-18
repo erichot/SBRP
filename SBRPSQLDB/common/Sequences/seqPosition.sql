@@ -1,0 +1,1 @@
+﻿CREATE SEQUENCE [common].[seqPosition] AS smallint START WITH 1001 INCREMENT BY 1 NO CYCLE;

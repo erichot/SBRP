@@ -1,0 +1,69 @@
+﻿@model ProductViewModel
+
+
+
+
+<div>
+    <table id="tbListSuppliers" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    remove
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = default(int);
+                foreach (var item in Model.ProductSuppliers??Enumerable.Empty<ProductSupplierViewModel>())
+                {
+                    <tr>
+                        <td>
+                            <input type="number" asp-for="@Model.ProductSuppliers[i].ItemNo"
+                                   id="txtPtPsItemNo_@i"/>
+                            <input type="hidden" asp-for="@Model.ProductSuppliers[i].ProductNo" />
+                            <label>@(i+1)</label>
+                        </td>
+                        <td>
+                            <select asp-for="@Model.ProductSuppliers[i].SupplierNo"
+                                    class="cssPtPsSupplierNo"
+                                    id="selPtPsSupplier_@i">
+                            </select>
+                        </td>
+                        <td>
+                            <input type="checkbox" asp-for="@Model.ProductSuppliers[i].IsDefault" />
+                        </td>
+                        <td>
+                            <input type="checkbox" asp-for="@Model.ProductSuppliers[i].EditForRemoving" />
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <button id="btnPtPsAddDetail" class="btn btn-primary btn-add"
+                            type="button">
+                        @WebBaseUI.Form_Btn_Insert
+                        <i class="fa fa-plus"></i>
+                    </button>
+        </tfoot>
+    </table>
+
+
+
+
+</div>
+
+

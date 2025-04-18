@@ -1,0 +1,1 @@
+﻿CREATE SEQUENCE [common].[seqEmployee] AS int START WITH 10001 INCREMENT BY 1 NO CYCLE;

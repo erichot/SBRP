@@ -1,0 +1,14 @@
+﻿CREATE FUNCTION [psi].[udfGetOrderDateNo]
+(
+	@OrderDate DATE
+)
+RETURNS SMALLINT
+AS
+BEGIN
+	RETURN 
+		CAST(
+			DATEDIFF(DAY
+				, DATEFROMPARTS(2020,1, 1)
+				, @OrderDate)
+			AS SMALLINT)
+END

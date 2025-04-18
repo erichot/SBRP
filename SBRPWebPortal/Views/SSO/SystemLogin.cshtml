@@ -1,0 +1,180 @@
+﻿@model LoginInfoModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multikart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Multikart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <title>Portal</title>
+
+    <!-- latest jquery-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    <!-- Google font-->
+    @*<link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">*@
+
+    <!-- Font Awesome-->
+    @*<link rel="stylesheet" type="text/css" href="~/assets/oz/css/fontawesome.css">*@
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/oz/css/themify.css">
+
+
+    <!-- slick icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/oz/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/oz/css/slick-theme.css">
+
+    <!-- jsgrid css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/oz/css/jsgrid.css">
+
+    <!-- Bootstrap css-->
+    @*<link rel="stylesheet" type="text/css" href="~/assets/oz/css/bootstrap.css">*@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/oz/css/admin.css">
+
+
+    <script type="text/javascript">
+        $().ready(function () {
+            $("#txtLoginID").focus();
+        });
+    </script>
+</head>
+<body>
+    
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper page-login">
+        <div class="authentication-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-3 card-login">
+                        <span id="spnNotification"></span>
+                        <div class="card">
+                            <div class="card-header bg-primary-light">
+                                
+
+                                <div class="svg-icon">
+                                    <img src="~/xxxassets/oz/images/logo.svg">
+                                </div>
+                                <p>SBRP Portal SSO Login (View) </p>
+                                <environment include="Development">
+                                    <p></p>
+                                    <h4 class="text-center text-warning  bg-secondary" style="font-family:DFKai-SB">
+                                        開發區
+                                    </h4>
+                                </environment>
+                                <environment include="Staging">
+                                    <p></p>
+                                    <h4 class="text-center text-danger  bg-secondary">
+                                        Test (staging)
+                                    </h4>
+                                </environment>
+                            </div>
+                            <div class="card-body">
+                                <form asp-controller="SSO" class="form-horizontal auth-form" method="post">
+                                    <input type="hidden" asp-for="@Model.AppId" />
+                                    <div class="form-group">
+                                        <input type="text" asp-for="@Model.LoginId" id="txtLoginID"
+                                               class="form-control" placeholder="Login ID" onfocus="this.select();"
+                                               style="text-transform:uppercase;" />
+                                        <div class="error">
+                                            <i class=""></i>
+                                            <span asp-validation-for="@Model.LoginId"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" asp-for="@Model.Password"
+                                               value="1234"
+                                               class="form-control" onfocus="this.select()" placeholder="Login password" autocomplete="off" />
+                                        <div class="error">
+                                            <i class=""></i>
+                                            <span asp-validation-for="@Model.Password"></span>
+                                            <div asp-validation-summary="All" style="font-size: 1.4em"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-button">
+                                        <button asp-action="SystemLogin"
+                                                id="btnLogin" type="submit"
+                                                onclick="return JS_fnBtnShowSpinner(this);"
+                                                class="btn btn-block btn-primary">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Bootstrap js-->
+    <script src="~/assets/oz/js/bootstrap.js"></script>
+
+    <!-- Popper -->
+    <script src="~/assets/oz/js/popper.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="~/assets/oz/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/assets/oz/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- Sidebar jquery-->
+    <script src="~/assets/oz/js/sidebar-menu.js"></script>
+    <script src="~/assets/oz/js/slick.js"></script>
+
+    <!-- Jsgrid js-->
+    <script src="~/assets/oz/js/jsgrid/jsgrid.min.js"></script>
+    <script src="~/assets/oz/js/jsgrid/griddata-invoice.js"></script>
+    <script src="~/assets/oz/js/jsgrid/jsgrid-invoice.js"></script>
+
+    <!-- lazyload js-->
+    <script src="~/assets/oz/js/lazysizes.min.js"></script>
+
+    <!--right sidebar js-->
+    <script src="~/assets/oz/js/chat-menu.js"></script>
+
+    <!--script admin-->
+    <script src="~/assets/oz/js/admin-script.js"></script>
+
+
+
+
+    <script src="~/js/site.ui.js"></script>
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</html>

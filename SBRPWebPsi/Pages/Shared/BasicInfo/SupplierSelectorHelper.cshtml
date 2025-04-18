@@ -1,0 +1,178 @@
+﻿@page
+@model SBRPWebPsi.Pages.Shared.BasicInfo.SupplierSelectorHelperModel
+@{
+}
+
+
+
+
+
+<div class="container-fluid">
+    <partial name="~/Pages/Shared/GeneralPages/_PageHeaderPartial.cshtml" model="Model.PG_PageHeaderInfo" />
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="post">
+
+
+                <div class="card page-card">
+                    <div class="card-header">
+                        <span id="spnNotification"></span>
+
+                        @**@
+
+                        @*<partial name="~/Pages/Shared/Toolbars/_ContractSelectorToolbarPartial.cshtml" model="Model.PG_ContractFilterInfo" />*@
+
+                        <!--附帶或次要功能連結或按鈕-->
+                        <div class="form-function bg-yellow-lighter">
+                            <div class="items">
+                                請從下方列表點選指定之信託契約
+                            </div>
+                            @*<div class="items">
+                <button type="submit" asp-page="ContractSelectorHelper" asp-page-handler="LoadContract"
+                        class="btn btn-primary btn-refresh d-none"
+                        onclick="jsPageLoading_Show();"
+                        title="" data-toggle="tooltip">
+                    查詢
+                </button>
+            </div>*@
+                            <div class="items">
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" id="btnSubmit1"
+                                            asp-page="SupplierSelectorHelper" asp-page-handler="Next"
+                                            class="btn btn-primary"
+                                            data-toggle="tooltip" title="確認所選之信託契約並繼續下一步（快速鍵：滑鼠 Double-Click 明細列表中指定的「信託契約」資料列）"
+                                            onclick="jsPageLoading_Show();"
+                                            style="width:400px">
+                                        請選擇
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="items">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger d-flex justify-content-center">
+                        </div>
+
+
+                        <div class="table-responsive">
+
+
+                            @*<select asp-for="ContractSelectorInfo.ContractNo" asp-items="(IEnumerable<SelectListItem>)@ViewData[AppSystem.VD_LF_Contract]"></select>*@
+                            <input type="hidden" id="hndSupplierNo" asp-for="PG_SelectorInfo.SupplierNo" />
+                            <input type="hidden" asp-for="PG_SelectorInfo.TargetPageHandle" />
+                            <input type="hidden" asp-for="PG_SelectorInfo.TargetAspPage" />
+
+
+                            <table id="tbList" class="table table-bordered table-striped table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            @Supplier.GetDisplayName(c => c.SupplierId)
+                                        </th>
+                                        <th>
+                                            @Supplier.GetDisplayName(c => c.SupplierName)
+                                        </th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach (var item in Model.PG_List??Enumerable.Empty<SupplierViewModel>())
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.SupplierNo
+                                                </td>
+                                                <td>
+                                                    @item.SupplierId
+                                                </td>
+                                                <td>
+                                                    @item.SupplierName
+                                                </td>
+                                               
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+
+
+                        <div class="form-function bg-red-lighter">
+                            <div class="items">
+                            </div>
+                            <div class="items justify-content-center">
+                                <button type="submit" id="btnSubmit2"
+                                        asp-page="SupplierSelectorHelper" asp-page-handler="Next"
+                                        data-toggle="tooltip" title="確認所選之信託契約並繼續下一步（快速鍵：滑鼠 Double-Click 明細列表中指定的「信託契約」資料列）"
+                                        onclick="jsPageLoading_Show();"
+                                        class="btn btn-primary" style="width:400px">
+                                    請選擇
+                                </button>
+                            </div>
+                            <div class="items">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/pages/shared/basic-info/supplier.selector.helper.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var kdNotification = $("#spnNotification").kendoNotification().data("kendoNotification");
+
+            @{
+                if (TempData[AppSystem.TD_UI_PagePrompt_Swal] != null)
+                {
+                    var swalInfo = TempData.Get<PagePromptSwalEntity>(AppSystem.TD_UI_PagePrompt_Swal);
+                    var js = $"fnSwalShowFormMessageThenRedirect('{swalInfo.Title}', '{swalInfo.Message}', '{swalInfo.RedirectURL}');";
+                    @Html.Raw(js);
+                }
+                else if (TempData[AppSystem.TD_UI_OnPageLoad_TriggerFunction] != null)
+                {
+                    @Html.Raw(TempData[AppSystem.TD_UI_OnPageLoad_TriggerFunction].ToString());
+                }
+
+                if (TempData[AppSystem.TD_UI_OnPageLoad_Message_Notification] != null)
+                {
+                    @Html.Raw($"kdNotification.show('{TempData[AppSystem.TD_UI_OnPageLoad_Message_Notification].ToString()}');");
+                }
+            }
+
+        });
+
+    </script>
+
+
+}

@@ -1,0 +1,28 @@
+﻿@model int
+
+<div id="@($"dvPtChildEntitiesToolbar_{Model}")" class="toolbar">
+
+    <button type="button" id="@($"btnPtCEO_Remove_{Model}")" 
+            onclick="fnPtRemoveChild(@Model)"
+            title="Remove" class="toolbar-btn toolbar-btn-remove">
+        <i class="fas fa-xs fa-trash-alt"></i>
+    </button>
+    <button type="button" id="@($"btnPtCEO_Add_{Model}")" 
+            onclick="fnPtAddChild(@Model);" 
+            title="Remove" class="toolbar-btn toolbar-btn-add">
+        <i class="fas fa-xs fa-plus"></i>
+    </button>
+    <button type="button" id="@($"btnPtCEO_MoveUp_{Model}")"  
+            onclick="fnPtMoveUpChild(@Model);" 
+            title="上移" class="toolbar-btn toolbar-btn-moveup">
+        <i class="fas fa-xs fa-arrow-up"></i>
+    </button>
+    <button type="button" id="@($"btnPtCEO_MoveDown_{Model}")"  
+            onclick="fnPtMoveDownChild(@Model);" 
+           title="下移" class="toolbar-btn toolbar-btn-movedown">
+        <i class="fas fa-xs fa-arrow-down"></i>
+    </button>
+    @*<button class="toolbar-btn" id="clear-btn">
+        <i class="fas fa-xs fa-eraser"></i>
+    </button>*@
+</div>

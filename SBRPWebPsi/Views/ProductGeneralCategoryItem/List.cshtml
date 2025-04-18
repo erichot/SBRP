@@ -1,0 +1,157 @@
+﻿@model (PageHeaderEntity PG_PageHeaderInfo, List<ProductGeneralCategoryItemViewModel> PG_List, ProductGeneralCategoryDefinitionViewModel PG_PGCD)
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="container-fluid">
+    <partial name="~/Pages/Shared/GeneralPages/_PageHeaderPartial.cshtml" model="Model.PG_PageHeaderInfo" />
+</div>
+
+
+
+<form id="form1" asp-controller="ProductGeneralCategoryItem" method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- start card -->
+                <div class="card page-card">
+
+                    <div class="card-header">
+                        <div class="form-function bg-red-lighter">
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">&nbsp;</div>
+                            <div class="items">
+
+                            </div>
+                            <div class="items">
+
+                            </div>
+                        </div>
+
+
+
+                        <!--附帶或次要功能連結或按鈕-->
+                        <div class="form-function bg-yellow-lighter">
+                            <div class="items"></div>
+                            <div class="items">
+                                <a asp-action="EntityProcess" asp-route-_pGCItemNo="@Model.PG_PGCD.PGCategoryNo"
+                                   asp-route-_formEditModeEnum="@FormEditModeEnum.Add"
+                                   title="（快速鍵：[Alt] + [A]）" 
+                                    accesskey="A"
+                                    onclick="jsPageLoading_Show();" class="btn btn-secondary btn-add">
+                                    @WebBaseUI.Form_Btn_Add
+                                </a>
+
+                            </div>
+                            <div class="items">
+                                <div class="from-group">
+                                    @*<button type="submit" asp-page="List" asp-page-handler="Refresh"
+                                            onclick="jsPageLoading_Show();" accesskey="R" class="btn btn-secondary btn-refresh"
+                                            data-toggle="tooltip" title="（快速鍵：Alt + R）">
+                                        @WebBaseUI.Form_Btn_Refresh
+                                    </button>*@
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table id="tbList" class="table table-bordered table-striped table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="dt-head-no">
+                                            @ProductGeneralCategoryItem.GetDisplayName(c => c.PGCItemNo)
+                                        </th>
+                                        <th class="dt-head-id">
+                                            @ProductGeneralCategoryItem.GetDisplayName(c => c.PGCItemId)
+                                        </th>
+                                        <th class="dt-head-name">
+                                            @ProductGeneralCategoryItem.GetDisplayName(c => c.PGCItemName)
+                                        </th>
+                                       
+                                        <th class="dt-head-edit">
+                                            @WebBaseUI.Form_Btn_Edit
+                                        </th>
+                                        <th class="dt-head-remove">
+                                            @WebBaseUI.Form_Btn_Remove
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+
+                                        foreach (var item in Model.PG_List ?? Enumerable.Empty<ProductGeneralCategoryItemViewModel>())
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.PGCItemNo
+                                                </td>
+                                                <td>
+                                                    <a asp-action="EntityProcess" asp-route-_pGCItemNo="@item.PGCItemNo" 
+                                                       onclick="jsPageLoading_Show();" title="@item.DisplayIdDashName">
+                                                        @item.PGCItemId
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    @item.PGCItemName
+                                                </td>                                               
+                                                <td>
+                                                    <a asp-action="EntityProcess" asp-route-_pGCItemNo="@item.PGCItemNo"
+                                                       asp-route-_formEditModeEnum="@FormEditModeEnum.Edit"
+                                                       onclick="jsPageLoading_Show();" title="@item.DisplayIdDashName">
+                                                        <i class="bi-pencil-square"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a asp-action="EntityProcess" asp-route-_pGCItemNo="@item.PGCItemNo"
+                                                       asp-route-_formEditModeEnum="@FormEditModeEnum.Remove"
+                                                       onclick="jsPageLoading_Show();" title="@item.DisplayIdDashName">
+                                                        <i class="bi-trash"></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+
+
+
+@section Scripts {
+    <script>
+        const jsIsAllowEditing = true;
+        const jsIsAllowRemoval = jsIsAllowEditing;
+    </script>
+    
+    <script src="~/js/pages/products/general-category-item.list.js"></script>
+}

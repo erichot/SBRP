@@ -1,0 +1,99 @@
+﻿@model ProductGeneralCategoryDefinitionViewModel
+
+
+<input type="hidden" asp-for="@Model.PGCategoryNo" />
+
+
+
+<div class="inner bg-blue-lighter mb-4">
+    <h4>
+        
+    </h4>
+    <div class="flex-box">
+        <div class="items cols-4">
+            <div class="form-group">
+                <label asp-for="@Model.PGCategoryId"></label>
+                <input type="text" asp-for="@Model.PGCategoryId"
+                       autofocus
+                       readonly="@Model.IsReadonly"
+                       class="form-control form-input-id" />
+                <span asp-validation-for="@Model.PGCategoryId" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="w-100"></div>
+        <div class="items cols-2">
+            <div class="form-group">
+                <label asp-for="@Model.PGCategoryName"></label>
+                <div class="tips show">
+                    <em title="此名稱將作為功能表項目">
+                        <i class="fa fa-info"></i>
+                    </em>
+                </div>
+                <input type="text" asp-for="@Model.PGCategoryName"
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.PGCategoryName" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="w-100"></div>
+        <div class="items cols-4">
+            <div class="form-group">
+                <label asp-for="@Model.ItemIdMinLength"></label>
+                <input type="number" asp-for="@Model.ItemIdMinLength"
+                       id="txtPtItemIdMinLength"
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.ItemIdMinLength" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="items cols-4">
+            <div class="form-group">
+                <label asp-for="@Model.ItemIdMaxLength"></label>
+                <input type="number" asp-for="@Model.ItemIdMaxLength"
+                       id="txtPtItemIdMaxLength"
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.ItemIdMaxLength" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="items cols-4">
+            <div class="form-group">
+                <label asp-for="@Model.PGCOrderNo"></label>
+                <div class="tips show">
+                    <em title="序號若為1~10，則為商品代碼結構之">
+                        <i class="fa fa-info"></i>
+                    </em>
+                </div>
+                <input type="number" asp-for="@Model.PGCOrderNo"
+                       readonly="@Model.IsReadonly"
+                       class="form-control" />
+                <span asp-validation-for="@Model.PGCOrderNo" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="items cols-1">
+            <div class="form-group">
+                <label asp-for="Remark"></label>
+                <input type="text" asp-for="Remark"
+                       readonly="@Model.IsReadonly"                       
+                       multiple="multiple" 
+                       class="form-control form-input-remark" />
+            </div>
+        </div>
+
+    </div>
+</div>
+

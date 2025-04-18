@@ -1,0 +1,57 @@
+﻿@model SaleOrderViewModel
+
+
+<input type="hidden" asp-for="@Model.OrderNo" />
+<input type="hidden" asp-for="@Model.LogNo" />
+<input type="hidden" asp-for="@Model.StockNo" />
+
+<div class="inner bg-blue-lighter mb-4 dv-order-entity">
+    <h4>
+    </h4>
+    <div class="items cols-3">
+        <div class="form-group">
+            <input type="hidden" id="hdnPtMemberNo" asp-for="@Model.MemberNo" />
+            <label for="txtPtMemberId">
+                @SBRPDataPsi.Models.Member.GetDisplayName(c => c.MemberId)
+            </label>
+            <input type="text" id="txtPtMemberId" asp-for="@Model.MemberId" />
+        </div>
+    </div>
+</div>
+
+<div class="inner bg-blue-lighter mb-4 dv-order-entity">
+        <h4>
+        </h4>
+        <div class="flex-box">
+            <div class="items cols-4">
+                <div class="form-group">
+                    <label asp-for="@Model.OrderId"></label>
+                    <input type="text" asp-for="@Model.OrderId"
+                           readonly="@Model.IsReadonlyForIdField"
+                           class="form-control" />
+                </div>
+            </div>
+            <div class="items cols-6">
+                <div class="form-group">
+                    <label asp-for="@Model.OrderDate"></label>
+                    <input type="date" asp-for="@Model.OrderDate"
+                           readonly="@Model.IsReadonlyForIdField"
+                           class="form-control" />
+                    <span asp-validation-for="@Model.OrderDate" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="w-100"></div>
+            <div class="items cols-1">
+                <div class="form-group">
+                    <label asp-for="@Model.Remark"></label>
+                    <input type="text" asp-for="@Model.Remark" multiple 
+                           readonly="@Model.IsReadonly"
+                           class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
